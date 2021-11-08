@@ -30,3 +30,7 @@ if ($play)
 $SavedPlaytimes.WriteToFile($playtimeSave);
 
 $SavedPlaytimes.GetPlaytimeEntries() | Format-Table @{L = "Playtime"; E = {$_.TimeSpan}}, Date
+
+Write-Host "Total playtime: $($SavedPlaytimes.TotalTime())"
+
+Read-Host "Press enter to continue..."
