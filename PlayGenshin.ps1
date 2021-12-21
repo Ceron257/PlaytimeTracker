@@ -2,7 +2,11 @@
 param (
     [Parameter()]
     [bool]
-    $play = $true
+    $play = $true,
+    [Parameter()]
+    [bool]
+    $waitAtEnd = $true
+    
 )
 
 $GenshinTime = {}
@@ -32,5 +36,7 @@ $SavedPlaytimes.WriteToFile($playtimeSave);
 $SavedPlaytimes.GetPlaytimeEntries() | Format-Table @{L = "Playtime"; E = {$_.TimeSpan}}, Date
 
 Write-Host "Total playtime: $($SavedPlaytimes.TotalTime())"
-
-Read-Host "Press enter to continue..."
+if ($waitAtEnd)
+{
+  Read-Host "Press enter to continue..."
+}
